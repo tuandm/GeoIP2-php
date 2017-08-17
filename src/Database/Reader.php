@@ -47,9 +47,13 @@ class Reader implements ProviderInterface
      *                                                     is corrupt or invalid
      */
     public function __construct(
-        $filename,
+        $filename = null,
         $locales = ['en']
     ) {
+        if ($filename === null) {
+            $filename = dirname(__FILE__) . '/../../resources/GeoLite2-City.mmdb';
+        }
+        
         $this->dbReader = new DbReader($filename);
         $this->locales = $locales;
     }
